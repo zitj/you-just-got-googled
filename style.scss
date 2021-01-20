@@ -1,0 +1,92 @@
+@for $i from 1 through 99 {
+    .container:nth-child(#{$i}) {
+        top: (5% + (random(18) * $i));
+        left: (5% + (random(10) * $i));
+        animation: movement
+            (random(10) * 0.5s + random(10) * 0.3s)
+            linear
+            infinite;
+
+        @keyframes movement {
+            0% {
+                transform: translateX(0px);
+            }
+            50% {
+                transform: translateX(10% + (random(18) * ($i)))
+                    translateY(10% + (random(5) * $i) - random(4) * $i);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+    }
+}
+body {
+    background: rgba(0, 0, 0, 0.048);
+}
+button {
+    padding: 3%;
+}
+
+.cage {
+    position: relative;
+    height: 800px;
+    width: 1600px;
+    background: transparent;
+    margin: 240px auto;
+    border-radius: 30px;
+    cursor: pointer;
+
+    .cage-shadow {
+        height: 800px;
+        width: 100%;
+        position: absolute;
+        top: 0%;
+        box-shadow: -8px -8px 8px rgba(255, 254, 254, 0.657),
+            8px 8px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 30px;
+    }
+    .container {
+        position: absolute;
+
+        .ball {
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            position: relative;
+            animation: balling 0.6s linear infinite;
+        }
+        .shadow {
+            height: 80px;
+            width: 80px;
+            position: absolute;
+            top: 0%;
+            border-radius: 50%;
+            box-shadow: 0px 120px 50px #3333331e;
+            animation: shadowing 0.6s linear infinite;
+        }
+    }
+}
+@keyframes balling {
+    0% {
+        transform: translateY(0px) rotate(180deg);
+    }
+    50% {
+        transform: translateY(100px) rotate(360deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(540deg);
+    }
+}
+@keyframes shadowing {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(100px);
+        box-shadow: 0px 10px 5px #33333332;
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
