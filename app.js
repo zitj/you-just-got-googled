@@ -1,34 +1,39 @@
 const array = [1, 2, 3, 4];
 const cage = document.querySelector('.cage');
 const cage_shadow = document.querySelector('.cage-shadow');
-const button = document.querySelector('button');
+const button = document.querySelector('.goBtn');
+const select = document.querySelector('select');
+const input = document.querySelector('input');
+const body = document.querySelector('body');
+const restart_Btn = document.querySelector('#restart-button');
+let heading = document.querySelector('h1');
 
 const happy_colors = [
     {
         light: 'e7e42d',
         dark: 'cac829',
-        name: 'yellow',
+        name: 'Yellow',
         adder: 0,
         id: 0,
     },
     {
         light: '3572c2',
         dark: '266097',
-        name: 'blue',
+        name: 'Blue',
         adder: 0,
         id: 1,
     },
     {
         light: '35c270',
         dark: '269755',
-        name: 'green',
+        name: 'Green',
         adder: 0,
         id: 2,
     },
     {
         light: 'b42b2b',
         dark: '972626',
-        name: 'red',
+        name: 'Red',
         adder: 0,
         id: 3,
     },
@@ -50,7 +55,8 @@ const randomColor = () => {
 
 let template = '';
 
-const start = () => {
+const start = (e) => {
+    e.preventDefault();
     render_balls();
     determine_winner();
 };
@@ -72,7 +78,7 @@ const render_balls = () => {
 const determine_winner = () => {
     for (let color of happy_colors) {
         if (color.adder >= Math.floor(array.length / 2 + 1)) {
-            console.log(`${color.name} is a winner!`);
+            heading.innerHTML = `${color.name} is a winner!`;
         }
         if (color.adder === Math.floor(array.length / 2)) {
             potential_winner.push(color.name);
@@ -83,12 +89,18 @@ const determine_winner = () => {
     }
 
     if (potential_winner.length == 1) {
-        console.log(potential_winner + ' is a winner!');
+        heading.innerHTML = `${potential_winner} is a winner!`;
+    }
+    if (potential_winner.length > 1) {
+        heading.innerHTML = `We have a tie, place your bets again!`;
     }
 
     if (googled.length === array.length) {
-        console.log('You just got googled!');
+        heading.innerHTML = `You just got googled!`;
     }
 };
 
 button.addEventListener('click', start);
+restart_Btn.addEventListener('click', () => {
+    window.location.reload();
+});

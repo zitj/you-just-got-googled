@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 @for $i from 1 through 99 {
     .container:nth-child(#{$i}) {
         top: (5% + (random(18) * $i));
@@ -23,11 +25,42 @@
 }
 body {
     background: rgba(0, 0, 0, 0.048);
-}
-button {
-    padding: 3%;
-}
+    font-family: 'Open Sans', sans-serif;
 
+    h1 {
+        text-align: center;
+        font-size: 5em;
+        opacity: 0.3;
+    }
+}
+form {
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10%;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    label,
+    select,
+    input,
+    button {
+        margin-bottom: 20px;
+    }
+    select,
+    input,
+    button {
+        width: 200px;
+        padding: 5% 2%;
+        font-size: 1em;
+        outline: none;
+    }
+    select {
+        border: none;
+    }
+}
 .cage {
     position: relative;
     height: 800px;
@@ -37,15 +70,6 @@ button {
     border-radius: 30px;
     cursor: pointer;
 
-    .cage-shadow {
-        height: 800px;
-        width: 100%;
-        position: absolute;
-        top: 0%;
-        box-shadow: -8px -8px 8px rgba(255, 254, 254, 0.657),
-            8px 8px 8px rgba(0, 0, 0, 0.15);
-        border-radius: 30px;
-    }
     .container {
         position: absolute;
 
@@ -84,6 +108,7 @@ button {
     }
     50% {
         transform: translateY(100px);
+
         box-shadow: 0px 10px 5px #33333332;
     }
     100% {
