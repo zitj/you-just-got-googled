@@ -6,6 +6,7 @@ const select = document.querySelector('select');
 const input = document.querySelector('input');
 const body = document.querySelector('body');
 const restart_Btn = document.querySelector('#restart-button');
+const form = document.querySelector('form');
 let heading = document.querySelector('h1');
 
 const happy_colors = [
@@ -59,6 +60,8 @@ const start = (e) => {
     e.preventDefault();
     render_balls();
     determine_winner();
+    restart_Btn.classList.remove('hide');
+    form.classList.add('hide');
 };
 
 const render_balls = () => {
