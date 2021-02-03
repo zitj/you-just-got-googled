@@ -8,6 +8,7 @@ const body = document.querySelector('body');
 const restart_Btn = document.querySelector('#restart-button');
 const form = document.querySelector('form');
 let heading = document.querySelector('h1');
+let subHeading = document.querySelector('h2');
 
 const happy_colors = [
     {
@@ -82,6 +83,7 @@ const determine_winner = () => {
     for (let color of happy_colors) {
         if (color.adder >= Math.floor(array.length / 2 + 1)) {
             heading.innerHTML = `${color.name} is a winner!`;
+            potential_winner.push(color.name);
         }
         if (color.adder === Math.floor(array.length / 2)) {
             potential_winner.push(color.name);
@@ -94,12 +96,24 @@ const determine_winner = () => {
     if (potential_winner.length == 1) {
         heading.innerHTML = `${potential_winner} is a winner!`;
     }
+
     if (potential_winner.length > 1) {
         heading.innerHTML = `We have a tie, place your bets again!`;
     }
 
     if (googled.length === array.length) {
         heading.innerHTML = `You just got googled!`;
+    }
+
+    if (
+        potential_winner.length == 1 &&
+        select.value == potential_winner[0].toLowerCase()
+    ) {
+        subHeading.innerHTML = `You won! :) `;
+    } else if (googled.length == array.length && select.value == 'random') {
+        subHeading.innerHTML = `You won! :) `;
+    } else {
+        subHeading.innerHTML = `You lost! :(`;
     }
 };
 
